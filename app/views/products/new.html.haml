@@ -1,0 +1,33 @@
+.container
+  %h3.text-center Add Product
+  = form_for(:product, url: products_create_path,html: { multipart: true } ) do |f|
+    = render 'layouts/error_messages', object: @product
+    .form-group
+      = f.label :name
+      = f.text_field :name,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :description
+      = f.text_area :description,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :cost
+      = f.text_field :cost,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :discount
+      = f.text_field :discount,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :category
+      = f.select :category ,options_for_select([ ['Clothing','Clothing'], ['Home','Home'],['Garden','Garden'],['Sports','Sports'],['Beauty','Beauty'] ]),autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :gender
+      = f.select :gender ,options_for_select([ ['Male','Male'], ['Female','Female'],['Any','Any'] ]),autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :quantity
+      = f.text_field :quantity,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :tags
+      = f.text_area :tags,autofocus: true,class: 'form-control'
+    .form-group
+      = f.label :image
+      = f.file_field :image,class: 'form-control'
+    = f.submit "Add Product" ,class: 'btn btn-primary center'
+

@@ -1,0 +1,31 @@
+source 'https://rubygems.org'
+
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'carrierwave', '~> 0.11.2'
+gem 'devise', '~> 4.1', '>= 4.1.1'
+gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'jquery-rails'
+gem 'pg'
+gem 'rails', '4.2.5.1'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+gem 'sass-rails', '~> 5.0'
+gem 'state_machine', '~> 1.2'
+gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate', '~> 3.1'
+gem 'annotate'
+gem 'coffee-rails'
+gem 'turbolinks'
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
+gem 'delayed_job'
+gem 'aasm', '~> 4.10', '>= 4.10.1'
+group :development, :test do
+  gem 'byebug'
+  gem 'spring'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'better_errors'
+end
+
+group :development do
+end
+

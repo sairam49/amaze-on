@@ -1,0 +1,20 @@
+.rating.clearfix
+  .rating_content.thumbnail
+    %p
+      %strong
+        = rating.user.email if rating.user
+    %p
+      %b Review:
+      %i
+        = rating.review
+    %p
+      %b Stars:
+      %i
+        = rating.rating
+    %p.comment_time
+      %i
+        = time_ago_in_words(rating.updated_at)
+        Ago
+    - if rating.user == current_user
+      = link_to 'Edit',rating_edit_path(rating),class: 'btn btn-primary'
+

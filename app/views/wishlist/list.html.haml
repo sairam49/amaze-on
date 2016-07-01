@@ -1,0 +1,25 @@
+%h3.text-center Your Wishlist
+.container
+  .row
+    .col-xs-12
+      .table-responsive
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th Image
+              %th Name
+              %th Cost
+              %th Option
+          %tbody
+            - @products.each do |p|
+              %tr
+                %td
+                  = image_tag p.first.image_url.to_s,height:50, width:50
+                %td
+                  = p.first.name
+                %td
+                  = p.first.cost
+                %td
+                  = link_to 'Remove', wishlist_path(p.first),method: :delete,data: { confirm: 'Are you sure?' }  |
+
+

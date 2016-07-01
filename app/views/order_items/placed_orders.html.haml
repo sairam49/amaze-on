@@ -1,0 +1,39 @@
+- @orders.each do |k,v|
+  .container
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-bordered.table-hover
+            %thead
+              %tr
+                %th Order_ID
+                %th Image
+                %th Name
+                %th Cost
+                %th Discount
+                %th Quantity
+                %th Total
+                %th Status
+            %tbody
+              - v.each do |val|
+                %tr
+                  %td
+                    = k
+                  %td
+                    = image_tag find_image_url(val.product_id).to_s, height: 57,width: 57
+                  %td
+                    = product_name(val.product_id)
+                  %td
+                    = val.unit_price
+                  %td
+                    = find_discount(val.product_id)
+                  %td
+                    = val.quantity
+                  %td
+                    = val.subtotal
+                  %td
+                    - if val.state != "cancelled" && val.state != "delivered"
+                      = link_to "Cancel",order_item_cancel_path(val.id),class: "btn btn-danger",method: :put
+                    %p
+                      = val.state
+

@@ -1,0 +1,33 @@
+- if @order_items.blank?
+  %p.text-center
+    There are no items in your shopping cart.
+- else
+  - @order_items.each do |order_item|
+    .well
+      .row
+        .col-xs-4
+          %h4= order_item[:product_name]
+        .col-xs-4
+          = image_tag order_item[:img_url],height:150, width:150
+        .col-xs-4
+          = form_tag update_item_cart_path, method: :post  do |f|
+            %h4.text-right
+              Unit Price: Rs.
+              %span
+                = order_item[:unit_price]
+            .row
+              .col-xs-4
+                = number_field_tag :quantity, order_item[:quantity], class: "form-control", min: 1
+                = hidden_field_tag :product_id, order_item[:product_id]
+              .col-xs-8.text-right
+                .btn-group
+                  = submit_tag "Update Quantity",class: "btn btn-primary"
+                  = link_to "Delete", remove_item_cart_path(product_id: order_item[:product_id]), { data: { confirm: "Are you sure you wish to delete the product '#{order_item[:product_name]}' from your cart?" }, method: :post, class: "btn btn-danger" }
+            %h4.text-right
+              Total Price: Rs.
+              %span
+                = order_item[:total_price]
+  = form_tag order_items_add_path,method: :get do |f|
+    .center
+      = submit_tag "Place Order", class: "btn btn-primary"
+

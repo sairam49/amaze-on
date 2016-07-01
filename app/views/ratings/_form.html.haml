@@ -1,0 +1,21 @@
+.row1
+  .col-md-8
+    = form_for(:rating, url: ratings_create_path) do |f|
+      .form-group
+        = hidden_field_tag 'rating[user_id]', current_user.id
+      .form-group
+        = hidden_field_tag :product_id, params[:id]
+      .form-group
+        = f.radio_button :rating, '1'
+        = f.label :rating, '1', :value => '1'
+        = f.radio_button :rating, '2'
+        = f.label :rating, '2', :value => '2'
+        = f.radio_button :rating, '3'
+        = f.label :rating, '3', :value => '3'
+        = f.radio_button :rating, '4'
+        = f.label :rating, '4', :value => '4'
+        = f.radio_button :rating, '5'
+        = f.label :rating, '5', :value => '5'
+      .form-group
+        = f.text_area :review,autofocus: true,class: 'form-control'
+      = f.submit "Add review",class: 'btn btn-ptimary center'

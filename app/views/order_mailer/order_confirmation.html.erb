@@ -1,0 +1,13 @@
+<h3>Hello <%= @user.email%>,</h3>
+
+<h4>Your Order has been placed!!</h4>
+Order ID : amaze-on<%= @order.id%>
+You have ordered :
+<% @order_items.each do |order_item| %>
+  Product : <%= order_item[:product_id] %>
+  Quantity: <%= order_item[:quantity] %>
+  Unit Cost: <%= order_item[:unit_price]%>
+  Total Cost: <%= order_item[:subtotal]%>
+<%end%>
+
+Thank you for shopping with Amaze-On!

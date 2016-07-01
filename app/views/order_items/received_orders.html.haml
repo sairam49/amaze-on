@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-xs-12
+      .table-responsive
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th Order_ID
+              %th Image
+              %th Name
+              %th Cost
+              %th Discount
+              %th Quantity
+              %th Total
+              %th Status
+          %tbody
+            - @received_orders.each do |r_o|
+              %tr
+                %td
+                  = r_o.order_id
+                %td
+                  = image_tag find_image_url(r_o.product_id).to_s, height: 57,width: 57
+                %td
+                  = product_name(r_o.product_id)
+                %td
+                  = r_o.unit_price
+                %td
+                  = find_discount(r_o.product_id)
+                %td
+                  = r_o.quantity
+                %td
+                  = r_o.subtotal
+                %td
+                  - if r_o.state != "shipped" && r_o.state != "cancelled"
+                    = link_to "Ship",order_item_ship_path(r_o.id),class: "btn btn-warning",method: :put
+                  - else
+                    %h4= r_o.state
