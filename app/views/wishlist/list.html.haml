@@ -1,28 +1,32 @@
-%h3.text-center Your Wishlist
-.container
-  .row
-    .col-xs-12
-      .table-responsive
-        %table.table.table-bordered.table-hover
-          %thead
-            %tr
-              %th Image
-              %th Name
-              %th Cost
-              %th Option
-          %tbody
-            - @products.each do |p|
+- if @products.empty?
+  %h3
+    Your wishlist is currently empty!
+- else
+  %h3.text-center Your Wishlist
+  .container
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-bordered.table-hover
+            %thead
               %tr
-                %td
-                  = image_tag p.image_url.to_s,height:50, width:50
-                %td
-                  = p.name
-                %td
-                  = p.cost
-                %td
-                  = link_to 'Remove', wishlist_update_path(product_id: p.id),method: :post,data: { confirm: 'Are you sure?' }
+                %th Image
+                %th Name
+                %th Cost
+                %th Option
+            %tbody
+              - @products.each do |p|
+                %tr
+                  %td
+                    = image_tag p.image_url.to_s,height:50, width:50
+                  %td
+                    = p.name
+                  %td
+                    = p.cost
+                  %td
+                    = link_to 'Remove', wishlist_update_path(product_id: p.id),method: :post,data: { confirm: 'Are you sure?' }
 
-.row.text-center
-  .col-xs-6
-    = link_to 'Delete Wishlist',wishlist_delete_path,method: :delete,data: { confirm: 'Are you sure?' },class: "btn btn-primary"
+  .row.text-center
+    .col-xs-6
+      = link_to 'Delete Wishlist',wishlist_delete_path,method: :delete,data: { confirm: 'Are you sure?' },class: "btn btn-primary"
 
