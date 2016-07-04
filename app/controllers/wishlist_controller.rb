@@ -1,34 +1,41 @@
 class WishlistController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_wishlist
+  before_action :build_products, only: [:create]
 
   def create
-    @wishlist = Wishlist.new
-    @wishlist.user_id = params[:wishlist][:user_id]
-    @wishlist.product_ids << params[:wishlist][:product_ids]
     if @wishlist.save
-      redirect_to :action => 'list'
+      redirect_to :action => 'list', notice: 'Product is added to wishlist!'
     end
+  end
+
+  def update
+    current_user.wishlist.products.reject! {|p| p == params[:product_id]}
   end
 
   def list
-    @products = []
-    # TODO: Fix this action logic
-    @wishlist = current_user.wishlist.product_ids
-    @wishlist.each do |w|
-      product = Product.where(:id => w)
-      @products.push(product)
-    end
+    @products = Product.find(@wishlist.products.collect {|p| p[:id].to_i })
   end
 
   def destroy
-    #TODO: You should only destroy the current user wishlist
-     #if current_user.whishlist.id == params[:id]
-      Wishlist.find(params[:id]).destroy
-      redirect_to :action => 'list'
+    current_user.whishlist.destroy
+    redirect_to :action => 'list', notice: 'Wishlist is destroyed!'
   end
 
   private
-    def wishlist_params
-      params.fetch(:wishlist, {}).permit(:user_id,:product_ids => [])
+    def set_wishlist
+      @wishlist = current_user.wishlist.present? ? current_user.wishlist : Wishlist.create(:user_id => current_user.id)
+    end
+
+
+    def build_products
+      ret = []
+
+      if params[:wishlist][:product_id].present?
+        ret.push({:id => params[:wishlist][:product_id],:cost => params[:wishlist][:product_cost]})
+        #params[:products].each do |k,v|
+         #  ret.push({id: v[:id], price: v[:price]})
+       end
+      @wishlist.products << ret.first
     end
 end

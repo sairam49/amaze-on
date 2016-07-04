@@ -14,12 +14,12 @@
             - @products.each do |p|
               %tr
                 %td
-                  = image_tag p.first.image_url.to_s,height:50, width:50
+                  = image_tag p.image_url.to_s,height:50, width:50
                 %td
-                  = p.first.name
+                  = p.name
                 %td
-                  = p.first.cost
+                  = p.cost
                 %td
-                  = link_to 'Remove', wishlist_path(p.first),method: :delete,data: { confirm: 'Are you sure?' }  |
+                  = link_to 'Remove', wishlist_update_path(product_id: p.id),method: :post,data: { confirm: 'Are you sure?' }  
 
 

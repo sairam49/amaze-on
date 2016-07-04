@@ -13,7 +13,8 @@
     - if user_signed_in?
       = form_for(:wishlist,url: wishlist_create_path,html: { multipart: true }) do |f|
         = f.hidden_field :user_id, :value => current_user.id
-        = f.hidden_field :product_ids, :value => @product.id
+        = f.hidden_field :product_id, :value => @product.id
+        = f.hidden_field :product_cost ,:value => @product.cost
         = f.submit "Add to Wishlist" ,class: 'btn btn-warning center'
     .thumbnail.position
       = form_tag [:add_item, :cart] do |f|

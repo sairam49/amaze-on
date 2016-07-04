@@ -28,6 +28,6 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:user_id,:house_number,:street,:city,:state,:pincode,:phone_number)
+    params.fetch(:address,{}).permit(:user_id,:house_number,:street,:city,:state,:pincode,:phone_number)
   end
 end
