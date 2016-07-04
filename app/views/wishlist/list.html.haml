@@ -20,6 +20,9 @@
                 %td
                   = p.cost
                 %td
-                  = link_to 'Remove', wishlist_update_path(product_id: p.id),method: :post,data: { confirm: 'Are you sure?' }  
+                  = link_to 'Remove', wishlist_update_path(product_id: p.id),method: :post,data: { confirm: 'Are you sure?' }
 
+.row.text-center
+  .col-xs-6
+    = link_to 'Delete Wishlist',wishlist_delete_path,method: :delete,data: { confirm: 'Are you sure?' },class: "btn btn-primary"
 

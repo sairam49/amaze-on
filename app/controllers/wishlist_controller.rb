@@ -10,15 +10,24 @@ class WishlistController < ApplicationController
   end
 
   def update
-    current_user.wishlist.products.reject! {|p| p == params[:product_id]}
+    #current_user.wishlist.products.each.reject! {|p| p[:id] == params[:product_id]}
+    products = current_user.wishlist.products
+    products.each do |p|
+      if p[:id] == params[:product_id]
+      p.delete(:id)
+      p.delete(:cost)
+      end
+    end
+    current_user.wishlist.update_attribute(:products,products)
+    redirect_to :action => 'list', notice: 'Product removed from wishlist!'
   end
 
   def list
-    @products = Product.find(@wishlist.products.collect {|p| p[:id].to_i })
+    @products = Product.find(@wishlist.products.collect {|p| p[:id].to_i if p.empty?.!})
   end
 
   def destroy
-    current_user.whishlist.destroy
+    current_user.wishlist.destroy
     redirect_to :action => 'list', notice: 'Wishlist is destroyed!'
   end
 

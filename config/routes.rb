@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'mywishlist' , to: 'wishlist#list', as: 'my_wishlist'
   post 'wishlist/create'
   post 'wishlist/update'
-  delete 'wishlist/:id', to: 'wishlist#destroy', as: 'wishlist'
+  delete 'wishlist', to: 'wishlist#destroy', as: 'wishlist_delete'
 
   resource :cart, only: [:show] do
     post 'add_item'
