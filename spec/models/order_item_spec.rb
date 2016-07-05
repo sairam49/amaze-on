@@ -15,7 +15,7 @@ describe OrderItem do
   describe "state" do
 
     before :each do
-      @order_item = OrderItem.create()
+      @order_item = build(:order_item)
     end
 
     it 'should be in initial state' do

@@ -12,7 +12,7 @@ describe Product do
   it {should validate_numericality_of(:cost).is_greater_than(0)}
 
   it "searches for a particular product" ,'.search' do
-    product = Product.create(name: 'collared-blue',description: 'aaa',cost: '1000',tags: 'shirt,one,norway,simple')
+    product = build(:product)
     expect(product.tags).to include "shirt"
   end
 
