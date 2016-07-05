@@ -12,12 +12,12 @@ class WishlistController < ApplicationController
   def update
     #current_user.wishlist.products.each.reject! {|p| p[:id] == params[:product_id]}
     current_user.wishlist.products.delete(params[:product_id])
+    products = current_user.wishlist.products
     #products.each do |p|
      # if p[:id] == params[:product_id]
       #p.delete(:id)
       #p.delete(:cost)
       #end
-    end
     current_user.wishlist.update_attribute(:products,products)
     redirect_to :action => 'list', notice: 'Product removed from wishlist!'
   end
@@ -43,5 +43,6 @@ class WishlistController < ApplicationController
         ret[params[:wishlist][:product_id]] = {:cost => params[:wishlist][:product_cost]}
         @wishlist.products = ret
       end
-      # {"p1" => {:cost => 20}, }
+      # {"p1" => {:cost => 20}}
     end
+end
