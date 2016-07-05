@@ -28,8 +28,7 @@ group :development, :test do
 end
 
 group :test do
-gem "shoulda-matchers", "< 3.0.0",
-    require: false
+gem "shoulda-matchers", "< 3.0.0",require: false
 gem "factory_girl_rails", "~> 4.0"
 end
 
