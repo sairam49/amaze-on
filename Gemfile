@@ -24,6 +24,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'rspec-rails' , '~> 3.3.0'
 end
 
 group :development do
