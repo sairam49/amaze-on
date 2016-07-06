@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-      @products = Product.all
+    @products = Product.all.where('quantity > 0')
    end
 
   def list

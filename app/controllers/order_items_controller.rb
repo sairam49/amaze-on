@@ -46,13 +46,25 @@ class OrderItemsController < ApplicationController
 
 
   def cancel_order_item
-    @order_item.cancel!
+    OrderItem.transaction do
+      if @order_item.state == "shipped"
+        product = Product.find(@order_item.product_id)
+        product_qty = product.quantity + @order_item.quantity
+        product.update_attribute(:quantity,product_qty)
+      end
+     @order_item.cancel!
+    end
     redirect_to :back
   end
 
 
   def ship_order_item
-    @order_item.ship!
+    OrderItem.transaction do
+     product = Product.find(@order_item.product_id)
+     product_qty = product.quantity - @order_item.quantity
+     product.update_attribute(:quantity,product_qty)
+     @order_item.ship!
+    end
     redirect_to :back
   end
 
