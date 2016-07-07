@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :gender
       t.integer :quantity
       t.text :tags
-      t.integer :seller, index: true
+      t.integer :seller_id, index: true
 
       t.timestamps null: false
     end
