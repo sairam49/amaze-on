@@ -1,15 +1,20 @@
 .container
   .down
-    - @latest_garden_products.each do |p|
-      .outer
-        .inner
-          %h5
-            = p.name
-          %p
-            = p.cost
-          .circle
-            = link_to (image_tag p.image_url.to_s,height:200, width:200,class: 'img'),product_show_path(p.id)
-    .gly
-      %a{href: "/garden"}
-        %span.glyphicon.glyphicon-chevron-right
+    - if @latest_garden_products.empty?
+      %h4
+        Coming Soon
+    - else
+      - @latest_garden_products.each do |p|
+        .outer
+          .inner
+            %h5
+              = p.name
+            %p
+              = p.cost
+              Rs
+            .circle
+              = link_to (image_tag p.image_url.to_s,height:200, width:200,class: 'img'),product_show_path(p.id)
+      .gly
+        %a{href: "/garden"}
+          %span.glyphicon.glyphicon-chevron-right
 
