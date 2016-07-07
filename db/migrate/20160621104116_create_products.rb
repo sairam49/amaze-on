@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :gender
       t.integer :quantity
       t.text :tags
-      t.references :seller, index: true, foreign_key: true
+      t.integer :seller, index: true
 
       t.timestamps null: false
     end
