@@ -5,7 +5,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 4.1', '>= 4.1.1'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'jquery-rails'
-gem 'pg'
+gem 'pg','0.18.1'
 gem 'rails', '4.2.5.1'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'sass-rails', '~> 5.0'
@@ -32,3 +32,5 @@ gem "shoulda-matchers", "< 3.0.0",require: false
 gem "factory_girl_rails", "~> 4.0"
 end
 
+gem 'pg', '0.18.1', group: :production
+gem 'rails_12factor', group: :production

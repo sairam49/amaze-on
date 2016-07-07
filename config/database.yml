@@ -39,3 +39,8 @@ test:
   pool: 5
   username: root
   password:
+
+production:
+  <<: *default
+  adapter: postgresql
+  database: db/production.sqlite3
