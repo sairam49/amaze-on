@@ -1,14 +1,37 @@
-- if user_signed_in?
-  %p
-    Hello
-    = current_user.email
-    - if current_user.type == "Seller"
-      %h3 Create Your Seller DashBoard
-    - else
-      %h3 Products Page
-  = link_to "Log out", destroy_user_session_path, method: :delete
-- else
-  = link_to "Sign Up",new_user_registration_path
-  %br
-  = link_to "Log in",new_user_session_path
+.carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}}
+  %ol
+    %li.active{:data => {:target => "slide-images", :slide_to => "0"}}
+    %li{:data => {:target => "slide-images", :slide_to => "1"}}
+    %li{:data => {:target => "slide-images", :slid1_to => "2"}}
+  .carousel-inner
+    .item.active
+      = image_tag @latest_offers.first.image_url(:thumb).to_s
+    .item
+      = image_tag @latest_offers.second.image_url(:thumb).to_s
+    .item
+      = image_tag @latest_offers.last.image_url(:thumb).to_s
+  %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
+    %span.glyphicon.glyphicon-chevron-left
+  %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
+    %span.glyphicon.glyphicon-chevron-right
+.clothing
+  %h3
+    Latest in Clothing
+  = render "products/latest_in_clothing"
+.home
+  %h3
+    Latest in Interior
+  = render "products/latest_in_home"
+.garden
+  %h3
+    Latest in Garden
+  = render "products/latest_in_garden"
+.sports
+  %h3
+    Latest in Sports
+  = render "products/latest_in_sports"
+.beauty
+  %h3
+    Latest in Beauty
+  = render "products/latest_in_beauty"
 

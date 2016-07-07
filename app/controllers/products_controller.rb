@@ -83,6 +83,14 @@ class ProductsController < ApplicationController
       @products = Product.where(:category => "Garden").all
    end
 
+   def men
+      @products = Product.where(:gender => "Male").all
+   end
+
+   def women
+      @products = Product.where(:gender => "Female").all
+   end
+
   private
 
    def product_params

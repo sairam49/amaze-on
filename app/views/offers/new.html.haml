@@ -1,0 +1,9 @@
+.container
+  %h3.text-center Add Offers!
+  = form_for(:offers,url: offer_create_path, :html => {:multipart => true}) do |f|
+    .form-groupo
+      = f.label :image
+      = f.file_field :image,class: 'form-control'
+    = f.submit "Add Offer" , class: 'btn btn-primary center'
+
+

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'beauty',to: 'products#beauty', as: 'product_beauty'
   get 'home',to: 'products#home', as: 'product_home'
   get 'garden',to: 'products#garden', as: 'product_garden'
+  get 'men',to: 'products#men',as: 'men_products'
+  get 'women',to: 'products#women',as: 'women_products'
 
   get 'products/:id/edit', to: 'products#edit', as: 'products_edit'
   get 'products', to: 'products#index', as: 'all_products'
@@ -51,7 +53,9 @@ Rails.application.routes.draw do
   get 'address/:id/edit', to: 'addresses#edit', as: 'address_edit'
   patch 'address/:id/update', to: 'addresses#update', as: 'address_update'
 
-
+  get 'offers/new'
+  post 'offers/create', to: 'offers#create', as: 'offer_create'
+  get 'offers/list'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

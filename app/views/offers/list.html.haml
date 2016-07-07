@@ -1,0 +1,17 @@
+%h3.text-center Offers
+.container
+  .row
+    .col-xs-6
+      .table-responsive
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th Offer
+              %th Created_At
+          %tbody
+            - @offers.each do |o|
+              %tr
+                %td
+                  = image_tag o.image_url.to_s,height: 75,width: 75
+                %td
+                  = o.created_at
