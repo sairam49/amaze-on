@@ -1,43 +1,49 @@
-%h3.text-center Your Products
-.container
-  .row
-    .col-xs-12
-      .table-responsive
-        %table.table.table-bordered.table-hover
-          %thead
-            %tr
-              %th Image
-              %th Name
-              %th Description
-              %th Cost
-              %th Discount
-              %th Category
-              %th Gender
-              %th Quantity
-              %th Tags
-              %th Options
-          %tbody
-            - @products.each do |p|
+- if @products.empty?
+  .message
+    .jumbotron
+      %h3
+        You have not added any products!
+- else
+  %h3.text-center Your Products
+  .container
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-bordered.table-hover
+            %thead
               %tr
-                %td
-                  = image_tag p.image_url.to_s,height:50, width:50
-                %td
-                  = p.name
-                %td
-                  = p.description
-                %td
-                  = p.cost
-                %td
-                  = p.discount
-                %td
-                  = p.category
-                %td
-                  = p.gender
-                %td
-                  = p.quantity
-                %td
-                  = p.tags
-                %td
-                  = link_to 'Destroy', product_path(p),method: :delete,data: { confirm: 'Are you sure?' }  |
-                  = link_to 'Edit', products_edit_path(p)
+                %th Image
+                %th Name
+                %th Description
+                %th Cost
+                %th Discount
+                %th Category
+                %th Gender
+                %th Quantity
+                %th Tags
+                %th Options
+            %tbody
+              - @products.each do |p|
+                %tr
+                  %td
+                    = image_tag p.image_url.to_s,height:50, width:50
+                  %td
+                    = p.name
+                  %td
+                    = p.description
+                  %td
+                    = p.cost
+                  %td
+                    = p.discount
+                  %td
+                    = p.category
+                  %td
+                    = p.gender
+                  %td
+                    = p.quantity
+                  %td
+                    = p.tags
+                  %td
+                    = link_to 'Destroy', product_path(p),method: :delete,data: { confirm: 'Are you sure?' }  |
+                    = link_to 'Edit', products_edit_path(p)
 

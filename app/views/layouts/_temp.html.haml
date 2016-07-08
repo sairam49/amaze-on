@@ -1,18 +1,19 @@
 .header
   .header-top-strip
     .container
-      .header-top-left
-        %ul
-          %li
-            %a{ href: "/users/sign_in"}
-              %span
-                .glyphicon.glyphicon-user
-                  Login
-          %li
-            %a{ href: "/users/sign_up"}
-              %span
-                .glyphicon.glyphicon-lock
-                  Register
+      - if user_signed_in?.!
+        .header-top-left
+          %ul
+            %li
+              %a{ href: "/users/sign_in"}
+                %span
+                  .glyphicon.glyphicon-user
+                    Login
+            %li
+              %a{ href: "/users/sign_up"}
+                %span
+                  .glyphicon.glyphicon-lock
+                    Register
       .search
         = form_tag(search_path, :method => "get") do
           = text_field_tag :search, params[:search], placeholder: "Search",autofocus: true,class: 'form-control textbox'
@@ -74,6 +75,7 @@
                 - if current_user.type == "Seller"
                   %li= link_to "Add Products", products_new_path
                   %li= link_to "My Products",my_products_path
+                %li= link_to "My Wishlist", my_wishlist_path
                 %li= link_to "Edit Account" , edit_user_registration_path
                 %li= link_to "Logout", destroy_user_session_path, method: :delete
               - else

@@ -5,21 +5,17 @@ class WishlistController < ApplicationController
 
   def create
     if @wishlist.save
-      redirect_to :action => 'list', notice: 'Product is added to wishlist!'
+     flash[:notice] ='Product is added to wishlist!'
+     redirect_to :action => 'list'
     end
   end
 
   def update
-    #current_user.wishlist.products.each.reject! {|p| p[:id] == params[:product_id]}
     current_user.wishlist.products.delete(params[:product_id])
     products = current_user.wishlist.products
-    #products.each do |p|
-     # if p[:id] == params[:product_id]
-      #p.delete(:id)
-      #p.delete(:cost)
-      #end
     current_user.wishlist.update_attribute(:products,products)
-    redirect_to :action => 'list', notice: 'Product removed from wishlist!'
+    redirect_to :action => 'list'
+     flash[:notice] = 'Product removed from wishlist!'
   end
 
   def list
@@ -28,7 +24,8 @@ class WishlistController < ApplicationController
 
   def destroy
     current_user.wishlist.destroy
-    redirect_to :action => 'list', notice: 'Wishlist is destroyed!'
+    redirect_to :action => 'list'
+    flash[:notice] = 'Wishlist is destroyed!'
   end
 
   private
@@ -38,11 +35,9 @@ class WishlistController < ApplicationController
 
     def build_products
       if params[:wishlist][:product_id].present?
-        #@wishlist.products = {:id => params[:wishlist][:product_id],:cost => params[:wishlist][:product_cost]}
         ret = @wishlist.products
         ret[params[:wishlist][:product_id]] = {:cost => params[:wishlist][:product_cost]}
         @wishlist.products = ret
       end
-      # {"p1" => {:cost => 20}}
     end
 end

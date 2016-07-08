@@ -1,27 +1,33 @@
-.container
-  - @products.each_slice(3) do |x,y,z|
-    .row
-    - if x
-      .col-md-3.portfolio-item.col-md-offset-1.thumbnail
-        = link_to (image_tag x.image_url.to_s,height:200, width:200),product_show_path(x.id)
-        %h3.title
-          = x.name
-        %p.cost
-          = x.cost
-          Rs/-
-    - if y
-      .col-md-3.portfolio-item.col-md-offset-1.thumbnail
-        = link_to (image_tag y.image_url.to_s,height:200, width:200),product_show_path(y.id)
-        %h3.title
-          = y.name
-        %p.cost
-          = y.cost
-          Rs/-
-    - if z
-      .col-md-3.portfolio-item.col-md-offset-1.thumbnail
-        = link_to (image_tag z.image_url.to_s,height:200, width:200),product_show_path(z.id)
-        %h3.title
-          = z.name
-        %p.cost
-          = z.cost
-          Rs/-
+- if @products.empty?
+  .message
+    .jumbotron
+      %h3
+        Sorry, None of the Products matched your search !
+- else
+  .container
+    - @products.each_slice(3) do |x,y,z|
+      .row
+      - if x
+        .col-md-3.portfolio-item.col-md-offset-1.thumbnail
+          = link_to (image_tag x.image_url(:thumb).to_s),product_show_path(x.id)
+          %h3.title
+            = x.name
+          %p.cost
+            = x.cost
+            Rs/-
+      - if y
+        .col-md-3.portfolio-item.col-md-offset-1.thumbnail
+          = link_to (image_tag y.image_url(:thumb).to_s),product_show_path(y.id)
+          %h3.title
+            = y.name
+          %p.cost
+            = y.cost
+            Rs/-
+      - if z
+        .col-md-3.portfolio-item.col-md-offset-1.thumbnail
+          = link_to (image_tag z.image_url(:thumb).to_s),product_show_path(z.id)
+          %h3.title
+            = z.name
+          %p.cost
+            = z.cost
+            Rs/-
