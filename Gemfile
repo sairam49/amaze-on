@@ -18,6 +18,8 @@ gem 'turbolinks'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
 gem 'delayed_job'
 gem 'aasm', '~> 4.10', '>= 4.10.1'
+gem 'fog-aws'
+gem 'fog'
 group :development, :test do
   gem 'byebug'
   gem 'spring'
@@ -25,6 +27,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'rspec-rails' , '~> 3.3.0'
+  gem 'dotenv-rails'
 end
 
 group :test do
