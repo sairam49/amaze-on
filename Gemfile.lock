@@ -364,7 +364,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails (~> 4.0)
   fog
-  fog-aws
   haml (~> 4.0, >= 4.0.7)
   jquery-rails
   pg (= 0.18.1)
