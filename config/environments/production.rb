@@ -35,6 +35,25 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'amaze-on.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => "amaze-on.herokuapp.com",
+      :user_name            => "idiot8636@gmail.com",
+      :password             => "password8636",
+      :authentication       => :plain,
+      :enable_starttls_auto => true
+}
+
+
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
