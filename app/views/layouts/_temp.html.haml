@@ -25,7 +25,10 @@
             .simpleCart_empty
               %a{ href: "/cart"}
                 Your Cart(
-                = session[:_cart].length
+                - if session[:_cart].empty?
+                  0
+                - else
+                  = session[:_cart].length
                 )
           .clearfix
       .clearfix
