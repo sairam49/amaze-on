@@ -43,13 +43,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host }
 
   config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
       :domain               => "amaze-on.herokuapp.com",
-      :user_name            => "idiot8636@gmail.com",
-      :password             => "password8636",
-      :authentication       => :plain,
-      :enable_starttls_auto => true
+      :port           => 587,
+      :address        => ENV['MAILGUN_SMTP_SERVER'],
+      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+      :authentication => :plain,
+
 }
 
 
