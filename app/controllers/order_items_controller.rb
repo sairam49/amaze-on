@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   helper_method :product_name,:find_image_url,:find_discount
   before_action :set_order_item , only: [:cancel_order_item,:ship_order_item,:deliver_order_item]
+  before_action :authenticate_user!
 
   def create
       Order.transaction do
@@ -95,5 +96,4 @@ class OrderItemsController < ApplicationController
    @order_item = OrderItem.find(params[:id])
   end
 
-end
-
+ end

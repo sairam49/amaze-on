@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
  before_action :authenticate_user!
-  before_filter :require_permission, :only => [:edit, :destroy]
+ before_filter :require_permission, :only => [:edit, :destroy]
 
   def require_permission
     if current_user != Rating.find(params[:id]).user
