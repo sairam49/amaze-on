@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
- before_action :authenticate_user!, :except => [:clothing,:sports,:garden,:home,:beauty,:show]
+ before_action :authenticate_user!, :except => [:clothing,:sports,:garden,:home,:beauty,:show,:men,:women]
  before_filter :require_permission, :only => [:edit, :destroy]
 
   def require_permission
